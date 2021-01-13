@@ -1,0 +1,927 @@
+/*--------------------------------------------------------------
+ *## Menus
+ *--------------------------------------------------------------
+/** === Main menu ===
+
+.dsn-nav-bar
+  > .header-top > .header-container, .site-header
+    transition: 0.5s ease-in-out
+
+.site-header
+  display: block
+  position: fixed
+  width: 100%
+  padding-top: 30px
+  padding-bottom: 20px
+  z-index: 9000
+  transition: all .2s ease-out
+  top: 0
+  +md(display, none)
+
+  .header-stickytop
+    height: auto !important
+
+  .extend-container
+    display: flex
+    width: 100%
+    padding: 0 50px
+    max-width: none
+    margin: 0 auto
+
+    .inner-header
+      position: relative
+      margin: 0 auto
+
+      .main-logo
+        width: 96px
+        padding-top: 4px
+        position: relative
+        z-index: 9999
+        transition: width .5s ease-in-out 0s
+
+    .main-navigation
+      position: relative
+      background: transparent !important
+      height: 0
+      width: 90%
+      right: 0
+      top: 0
+      display: flex
+      align-items: flex-start
+      transition: background-color .5s ease-in-out .5s, height .5s ease-in-out .5s
+
+      ul
+        width: 100%
+        max-width: none
+        margin: 0
+        display: flex
+        padding: 0
+        justify-content: flex-end
+
+        li
+          color: #fff
+          font-size: 13px
+          font-weight: 400
+          line-height: 1
+          padding-right: 25px
+          padding-top: 12px
+          position: relative
+          text-align: center
+
+          &:last-child
+            padding-bottom: 5px
+
+          a
+            transform: translate(0)
+            text-transform: uppercase
+            letter-spacing: 2px
+            position: relative
+            padding: 10px 0
+            margin-top: -10px
+            animation: shine 1s infinite
+            line-height: 15px
+
+            &:hover
+              -webkit-mask-image: -webkit-linear-gradient(165deg, rgba(0, 0, 0, 0.6) 30%, #000 50%, rgba(0, 0, 0, 0.6) 70%)
+              -webkit-mask-size: 200%
+              -webkit-animation: shine 1s infinite
+              animation: shine 1s infinite
+              color: inherit
+
+          ul
+            transform: translate3d(0px, 20px, 0px)
+            display: block
+            opacity: 0
+            min-width: 200px
+            position: absolute
+            width: 100%
+            left: -20px
+            height: inherit
+            overflow: visible
+            visibility: hidden
+            top: 40px
+            padding-top: 20px
+            padding-bottom: 10px
+            background: #090909
+            border-radius: 3px
+            transition: all .7s ease-in-out
+
+            li
+              overflow: visible
+              position: relative
+              list-style: none
+              text-align: left
+              float: left
+              display: block
+              padding-left: 20px
+              width: 100%
+
+              a
+                line-height: 20px
+
+        &.extend-container > li
+          padding-right: 30px
+          font-weight: 600
+
+          &:last-child
+            padding-right: 0
+
+  ul li a:after
+    content: ''
+    position: absolute
+    left: 0
+    top: 50%
+    width: 0
+    height: 3px
+    background-color: #212121
+    transition: 0.5s
+
+@media (min-width: 991px)
+  .nav-mobile
+    visibility: hidden
+
+.main-logo
+  .light-logo
+    display: block
+
+body.hamburger-menu
+  .site-header
+    display: none
+
+  .header-top
+    display: block
+
+/* -------------------------------------------------------
+ *                   Navbar primary
+ *--------------------------------------------------------
+/* -------------------------------------------------------
+ *                   Navbar Overlay
+ *--------------------------------------------------------
+
+.dsn-nav-bar
+  position: absolute
+  z-index: 999
+  width: 100%
+
+.header-top
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  z-index: 99
+  transition: all 0.5s
+  display: none
+
+.header-top
+  &.header-stickytop
+    z-index: 999
+
+  .header-container
+    position: absolute
+    width: 100%
+    max-width: 2560px
+    padding: 22px 50px
+    margin: auto
+    display: flex
+    justify-content: space-between
+    background-color: rgba(0, 0, 0, .2)
+
+    .logo
+      position: relative
+      pointer-events: auto
+      z-index: 99999
+      top: 5px
+
+      img
+        width: 80px
+
+    .menu-icon
+      position: relative
+      z-index: 999
+      top: 8px
+      cursor: pointer
+      margin-right: 50px
+
+      .icon-circle
+        position: absolute
+        width: 40px
+        height: 40px
+        border-radius: 50%
+        box-sizing: border-box
+        border: 2px solid #fff
+        left: 50%
+        top: 50%
+        margin-top: -23px
+        margin-left: -21px
+        cursor: pointer
+        z-index: 4
+        opacity: 0
+        visibility: hidden
+        transition: opacity 0.5s
+
+      &:hover .icon-circle
+        opacity: 0.2
+        visibility: visible
+
+      .text-menu
+        position: relative
+        display: inline-block
+        margin-left: 10px
+        font-family: "Montserrat", sans-serif
+        font-weight: 600
+        top: -21px
+        color: #fff
+        text-transform: uppercase
+        opacity: 0.9
+
+        > div
+          position: absolute
+          left: 0
+          top: 0
+          width: -webkit-max-content
+          width: -moz-max-content
+          width: max-content
+
+        .text-button
+          .dsn-wrapper
+            margin-right: 7px
+
+            &:last-child
+              margin-right: 0
+
+          .dsn-word-wrapper
+            will-change: transform
+
+            .dsn-chars-wrapper
+              will-change: transform
+              opacity: 1
+              visibility: visible
+              transform: none
+              transition: -webkit-transform 0.5s ease-in-out
+              transition: transform 0.5s ease-in-out
+              transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out
+
+              &:nth-of-type(0)
+                -webkit-transition: opacity 0.3s ease-in-out 200ms, visibility 0.3s 0ms, -webkit-transform 0.5s ease-in-out 0ms
+                transition: opacity 0.3s ease-in-out 200ms, visibility 0.3s 0ms, -webkit-transform 0.5s ease-in-out 0ms
+                -o-transition: transform 0.5s ease-in-out 0ms, opacity 0.3s ease-in-out 200ms, visibility 0.3s 0ms
+                transition: transform 0.5s ease-in-out 0ms, opacity 0.3s ease-in-out 200ms, visibility 0.3s 0ms
+                transition: transform 0.5s ease-in-out 0ms, opacity 0.3s ease-in-out 200ms, visibility 0.3s 0ms, -webkit-transform 0.5s ease-in-out 0ms
+
+              &:nth-of-type(1)
+                -webkit-transition: opacity 0.3s ease-in-out 245ms, visibility 0.3s 45ms, -webkit-transform 0.5s ease-in-out 45ms
+                transition: opacity 0.3s ease-in-out 245ms, visibility 0.3s 45ms, -webkit-transform 0.5s ease-in-out 45ms
+                -o-transition: transform 0.5s ease-in-out 45ms, opacity 0.3s ease-in-out 245ms, visibility 0.3s 45ms
+                transition: transform 0.5s ease-in-out 45ms, opacity 0.3s ease-in-out 245ms, visibility 0.3s 45ms
+                transition: transform 0.5s ease-in-out 45ms, opacity 0.3s ease-in-out 245ms, visibility 0.3s 45ms, -webkit-transform 0.5s ease-in-out 45ms
+
+              &:nth-of-type(2)
+                -webkit-transition: opacity 0.3s ease-in-out 290ms, visibility 0.3s 90ms, -webkit-transform 0.5s ease-in-out 90ms
+                transition: opacity 0.3s ease-in-out 290ms, visibility 0.3s 90ms, -webkit-transform 0.5s ease-in-out 90ms
+                -o-transition: transform 0.5s ease-in-out 90ms, opacity 0.3s ease-in-out 290ms, visibility 0.3s 90ms
+                transition: transform 0.5s ease-in-out 90ms, opacity 0.3s ease-in-out 290ms, visibility 0.3s 90ms
+                transition: transform 0.5s ease-in-out 90ms, opacity 0.3s ease-in-out 290ms, visibility 0.3s 90ms, -webkit-transform 0.5s ease-in-out 90ms
+
+              &:nth-of-type(3)
+                -webkit-transition: opacity 0.3s ease-in-out 335ms, visibility 0.3s 135ms, -webkit-transform 0.5s ease-in-out 135ms
+                transition: opacity 0.3s ease-in-out 335ms, visibility 0.3s 135ms, -webkit-transform 0.5s ease-in-out 135ms
+                -o-transition: transform 0.5s ease-in-out 135ms, opacity 0.3s ease-in-out 335ms, visibility 0.3s 135ms
+                transition: transform 0.5s ease-in-out 135ms, opacity 0.3s ease-in-out 335ms, visibility 0.3s 135ms
+                transition: transform 0.5s ease-in-out 135ms, opacity 0.3s ease-in-out 335ms, visibility 0.3s 135ms, -webkit-transform 0.5s ease-in-out 135ms
+
+              &:nth-of-type(4)
+                -webkit-transition: opacity 0.3s ease-in-out 380ms, visibility 0.3s 180ms, -webkit-transform 0.5s ease-in-out 180ms
+                transition: opacity 0.3s ease-in-out 380ms, visibility 0.3s 180ms, -webkit-transform 0.5s ease-in-out 180ms
+                -o-transition: transform 0.5s ease-in-out 180ms, opacity 0.3s ease-in-out 380ms, visibility 0.3s 180ms
+                transition: transform 0.5s ease-in-out 180ms, opacity 0.3s ease-in-out 380ms, visibility 0.3s 180ms
+                transition: transform 0.5s ease-in-out 180ms, opacity 0.3s ease-in-out 380ms, visibility 0.3s 180ms, -webkit-transform 0.5s ease-in-out 180ms
+
+        .text-open .dsn-word-wrapper, .text-close .dsn-word-wrapper
+          overflow: hidden
+          will-change: transform
+
+          .dsn-chars-wrapper
+            opacity: 0
+            visibility: hidden
+            will-change: transform
+            transform: translateY(50%) rotate(15deg) scale(0.8)
+            transform-origin: top left
+
+      .icon-m
+        position: relative
+        width: 22px
+        display: inline-block
+        height: 18px
+
+      .menu-icon-close
+        position: absolute
+        font-size: 20px
+        text-align: center
+        top: 0
+        color: #fff
+
+    .menu-icon__line
+      height: 2px
+      width: 22px
+      display: block
+      background-color: #ffffff
+      margin-bottom: 4px
+      -webkit-transition: background-color 0.5s ease, -webkit-transform 0.2s ease
+      transition: background-color 0.5s ease, -webkit-transform 0.2s ease
+      -o-transition: transform 0.2s ease, background-color 0.5s ease
+      transition: transform 0.2s ease, background-color 0.5s ease
+      transition: transform 0.2s ease, background-color 0.5s ease, -webkit-transform 0.2s ease
+
+    .menu-icon:hover
+      .menu-icon__line-left
+        transform: translateY(6px)
+
+      .menu-icon__line-right
+        transform: translateY(-6px)
+
+    .menu-icon__line-left
+      width: 11px
+      -webkit-transition: -webkit-transform 0.5s ease-in-out !important
+      transition: -webkit-transform 0.5s ease-in-out !important
+      -o-transition: transform 0.5s ease-in-out !important
+      transition: transform 0.5s ease-in-out !important
+      transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out !important
+
+    .menu-icon__line-right
+      width: 11px
+      position: absolute
+      right: 2px
+
+    .menu-icon:hover .text-menu
+      .text-button .dsn-word-wrapper
+        overflow: hidden
+        will-change: transform
+
+        .dsn-chars-wrapper
+          opacity: 0
+          visibility: hidden
+          will-change: transform
+          transform: translateY(50%) rotate(15deg) scale(0.8)
+          transform-origin: top left
+
+      .text-open
+        .dsn-wrapper
+          margin-right: 7px
+
+          &:last-child
+            margin-right: 0
+
+        .dsn-word-wrapper
+          will-change: transform
+
+          .dsn-chars-wrapper
+            will-change: transform
+            opacity: 1
+            visibility: visible
+            transform: none
+            -webkit-transition: -webkit-transform 0.5s ease-in-out
+            transition: -webkit-transform 0.5s ease-in-out
+            -o-transition: transform 0.5s ease-in-out
+            transition: transform 0.5s ease-in-out
+            transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out
+
+            &:nth-of-type(0)
+              -webkit-transition: opacity 0.3s ease-in-out 200ms, visibility 0.3s 0ms, -webkit-transform 0.5s ease-in-out 0ms
+              transition: opacity 0.3s ease-in-out 200ms, visibility 0.3s 0ms, -webkit-transform 0.5s ease-in-out 0ms
+              -o-transition: transform 0.5s ease-in-out 0ms, opacity 0.3s ease-in-out 200ms, visibility 0.3s 0ms
+              transition: transform 0.5s ease-in-out 0ms, opacity 0.3s ease-in-out 200ms, visibility 0.3s 0ms
+              transition: transform 0.5s ease-in-out 0ms, opacity 0.3s ease-in-out 200ms, visibility 0.3s 0ms, -webkit-transform 0.5s ease-in-out 0ms
+
+            &:nth-of-type(1)
+              -webkit-transition: opacity 0.3s ease-in-out 245ms, visibility 0.3s 45ms, -webkit-transform 0.5s ease-in-out 45ms
+              transition: opacity 0.3s ease-in-out 245ms, visibility 0.3s 45ms, -webkit-transform 0.5s ease-in-out 45ms
+              -o-transition: transform 0.5s ease-in-out 45ms, opacity 0.3s ease-in-out 245ms, visibility 0.3s 45ms
+              transition: transform 0.5s ease-in-out 45ms, opacity 0.3s ease-in-out 245ms, visibility 0.3s 45ms
+              transition: transform 0.5s ease-in-out 45ms, opacity 0.3s ease-in-out 245ms, visibility 0.3s 45ms, -webkit-transform 0.5s ease-in-out 45ms
+
+            &:nth-of-type(2)
+              -webkit-transition: opacity 0.3s ease-in-out 290ms, visibility 0.3s 90ms, -webkit-transform 0.5s ease-in-out 90ms
+              transition: opacity 0.3s ease-in-out 290ms, visibility 0.3s 90ms, -webkit-transform 0.5s ease-in-out 90ms
+              -o-transition: transform 0.5s ease-in-out 90ms, opacity 0.3s ease-in-out 290ms, visibility 0.3s 90ms
+              transition: transform 0.5s ease-in-out 90ms, opacity 0.3s ease-in-out 290ms, visibility 0.3s 90ms
+              transition: transform 0.5s ease-in-out 90ms, opacity 0.3s ease-in-out 290ms, visibility 0.3s 90ms, -webkit-transform 0.5s ease-in-out 90ms
+
+            &:nth-of-type(3)
+              -webkit-transition: opacity 0.3s ease-in-out 335ms, visibility 0.3s 135ms, -webkit-transform 0.5s ease-in-out 135ms
+              transition: opacity 0.3s ease-in-out 335ms, visibility 0.3s 135ms, -webkit-transform 0.5s ease-in-out 135ms
+              -o-transition: transform 0.5s ease-in-out 135ms, opacity 0.3s ease-in-out 335ms, visibility 0.3s 135ms
+              transition: transform 0.5s ease-in-out 135ms, opacity 0.3s ease-in-out 335ms, visibility 0.3s 135ms
+              transition: transform 0.5s ease-in-out 135ms, opacity 0.3s ease-in-out 335ms, visibility 0.3s 135ms, -webkit-transform 0.5s ease-in-out 135ms
+
+            &:nth-of-type(4)
+              -webkit-transition: opacity 0.3s ease-in-out 380ms, visibility 0.3s 180ms, -webkit-transform 0.5s ease-in-out 180ms
+              transition: opacity 0.3s ease-in-out 380ms, visibility 0.3s 180ms, -webkit-transform 0.5s ease-in-out 180ms
+              -o-transition: transform 0.5s ease-in-out 180ms, opacity 0.3s ease-in-out 380ms, visibility 0.3s 180ms
+              transition: transform 0.5s ease-in-out 180ms, opacity 0.3s ease-in-out 380ms, visibility 0.3s 180ms
+              transition: transform 0.5s ease-in-out 180ms, opacity 0.3s ease-in-out 380ms, visibility 0.3s 180ms, -webkit-transform 0.5s ease-in-out 180ms
+
+@media only screen and (max-width: 991px)
+  .header-top
+    display: block
+
+@media only screen and (max-width: 767px)
+  .header-top .header-container
+    padding: 20px 30px
+
+@media only screen and (max-width: 575px)
+  .header-top .header-container
+    padding: 20px 15px
+
+body.nav-active .header-top .header-container .menu-icon
+  .text-menu
+    top: -17px
+
+    .text-button
+      .dsn-wrapper
+        margin-right: 7px
+
+        &:last-child
+          margin-right: 0
+
+      .dsn-word-wrapper
+        will-change: transform
+
+        .dsn-chars-wrapper
+          will-change: transform
+          opacity: 1
+          visibility: visible
+          transform: none
+          -webkit-transition: -webkit-transform 0.5s ease-in-out
+          transition: -webkit-transform 0.5s ease-in-out
+          -o-transition: transform 0.5s ease-in-out
+          transition: transform 0.5s ease-in-out
+          transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out
+
+          &:nth-of-type(0)
+            -webkit-transition: opacity 0.3s ease-in-out 200ms, visibility 0.3s 0ms, -webkit-transform 0.5s ease-in-out 0ms
+            transition: opacity 0.3s ease-in-out 200ms, visibility 0.3s 0ms, -webkit-transform 0.5s ease-in-out 0ms
+            -o-transition: transform 0.5s ease-in-out 0ms, opacity 0.3s ease-in-out 200ms, visibility 0.3s 0ms
+            transition: transform 0.5s ease-in-out 0ms, opacity 0.3s ease-in-out 200ms, visibility 0.3s 0ms
+            transition: transform 0.5s ease-in-out 0ms, opacity 0.3s ease-in-out 200ms, visibility 0.3s 0ms, -webkit-transform 0.5s ease-in-out 0ms
+
+          &:nth-of-type(1)
+            -webkit-transition: opacity 0.3s ease-in-out 245ms, visibility 0.3s 45ms, -webkit-transform 0.5s ease-in-out 45ms
+            transition: opacity 0.3s ease-in-out 245ms, visibility 0.3s 45ms, -webkit-transform 0.5s ease-in-out 45ms
+            -o-transition: transform 0.5s ease-in-out 45ms, opacity 0.3s ease-in-out 245ms, visibility 0.3s 45ms
+            transition: transform 0.5s ease-in-out 45ms, opacity 0.3s ease-in-out 245ms, visibility 0.3s 45ms
+            transition: transform 0.5s ease-in-out 45ms, opacity 0.3s ease-in-out 245ms, visibility 0.3s 45ms, -webkit-transform 0.5s ease-in-out 45ms
+
+          &:nth-of-type(2)
+            -webkit-transition: opacity 0.3s ease-in-out 290ms, visibility 0.3s 90ms, -webkit-transform 0.5s ease-in-out 90ms
+            transition: opacity 0.3s ease-in-out 290ms, visibility 0.3s 90ms, -webkit-transform 0.5s ease-in-out 90ms
+            -o-transition: transform 0.5s ease-in-out 90ms, opacity 0.3s ease-in-out 290ms, visibility 0.3s 90ms
+            transition: transform 0.5s ease-in-out 90ms, opacity 0.3s ease-in-out 290ms, visibility 0.3s 90ms
+            transition: transform 0.5s ease-in-out 90ms, opacity 0.3s ease-in-out 290ms, visibility 0.3s 90ms, -webkit-transform 0.5s ease-in-out 90ms
+
+          &:nth-of-type(3)
+            -webkit-transition: opacity 0.3s ease-in-out 335ms, visibility 0.3s 135ms, -webkit-transform 0.5s ease-in-out 135ms
+            transition: opacity 0.3s ease-in-out 335ms, visibility 0.3s 135ms, -webkit-transform 0.5s ease-in-out 135ms
+            -o-transition: transform 0.5s ease-in-out 135ms, opacity 0.3s ease-in-out 335ms, visibility 0.3s 135ms
+            transition: transform 0.5s ease-in-out 135ms, opacity 0.3s ease-in-out 335ms, visibility 0.3s 135ms
+            transition: transform 0.5s ease-in-out 135ms, opacity 0.3s ease-in-out 335ms, visibility 0.3s 135ms, -webkit-transform 0.5s ease-in-out 135ms
+
+          &:nth-of-type(4)
+            -webkit-transition: opacity 0.3s ease-in-out 380ms, visibility 0.3s 180ms, -webkit-transform 0.5s ease-in-out 180ms
+            transition: opacity 0.3s ease-in-out 380ms, visibility 0.3s 180ms, -webkit-transform 0.5s ease-in-out 180ms
+            -o-transition: transform 0.5s ease-in-out 180ms, opacity 0.3s ease-in-out 380ms, visibility 0.3s 180ms
+            transition: transform 0.5s ease-in-out 180ms, opacity 0.3s ease-in-out 380ms, visibility 0.3s 180ms
+            transition: transform 0.5s ease-in-out 180ms, opacity 0.3s ease-in-out 380ms, visibility 0.3s 180ms, -webkit-transform 0.5s ease-in-out 180ms
+
+    .text-open .dsn-word-wrapper
+      overflow: hidden
+      will-change: transform
+
+      .dsn-chars-wrapper
+        opacity: 0
+        visibility: hidden
+        will-change: transform
+        transform: translateY(50%) rotate(15deg) scale(0.8)
+        transform-origin: top left
+
+  &:hover .text-menu
+    .text-button .dsn-word-wrapper
+      overflow: hidden
+      will-change: transform
+
+      .dsn-chars-wrapper
+        opacity: 0
+        visibility: hidden
+        will-change: transform
+        transform: translateY(50%) rotate(15deg) scale(0.8)
+        transform-origin: top left
+
+    .text-close
+      .dsn-wrapper
+        margin-right: 7px
+
+        &:last-child
+          margin-right: 0
+
+      .dsn-word-wrapper
+        will-change: transform
+
+        .dsn-chars-wrapper
+          will-change: transform
+          opacity: 1
+          visibility: visible
+          transform: none
+          -webkit-transition: -webkit-transform 0.5s ease-in-out
+          transition: -webkit-transform 0.5s ease-in-out
+          -o-transition: transform 0.5s ease-in-out
+          transition: transform 0.5s ease-in-out
+          transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out
+
+          &:nth-of-type(0)
+            -webkit-transition: opacity 0.3s ease-in-out 200ms, visibility 0.3s 0ms, -webkit-transform 0.5s ease-in-out 0ms
+            transition: opacity 0.3s ease-in-out 200ms, visibility 0.3s 0ms, -webkit-transform 0.5s ease-in-out 0ms
+            -o-transition: transform 0.5s ease-in-out 0ms, opacity 0.3s ease-in-out 200ms, visibility 0.3s 0ms
+            transition: transform 0.5s ease-in-out 0ms, opacity 0.3s ease-in-out 200ms, visibility 0.3s 0ms
+            transition: transform 0.5s ease-in-out 0ms, opacity 0.3s ease-in-out 200ms, visibility 0.3s 0ms, -webkit-transform 0.5s ease-in-out 0ms
+
+          &:nth-of-type(1)
+            -webkit-transition: opacity 0.3s ease-in-out 245ms, visibility 0.3s 45ms, -webkit-transform 0.5s ease-in-out 45ms
+            transition: opacity 0.3s ease-in-out 245ms, visibility 0.3s 45ms, -webkit-transform 0.5s ease-in-out 45ms
+            -o-transition: transform 0.5s ease-in-out 45ms, opacity 0.3s ease-in-out 245ms, visibility 0.3s 45ms
+            transition: transform 0.5s ease-in-out 45ms, opacity 0.3s ease-in-out 245ms, visibility 0.3s 45ms
+            transition: transform 0.5s ease-in-out 45ms, opacity 0.3s ease-in-out 245ms, visibility 0.3s 45ms, -webkit-transform 0.5s ease-in-out 45ms
+
+          &:nth-of-type(2)
+            -webkit-transition: opacity 0.3s ease-in-out 290ms, visibility 0.3s 90ms, -webkit-transform 0.5s ease-in-out 90ms
+            transition: opacity 0.3s ease-in-out 290ms, visibility 0.3s 90ms, -webkit-transform 0.5s ease-in-out 90ms
+            -o-transition: transform 0.5s ease-in-out 90ms, opacity 0.3s ease-in-out 290ms, visibility 0.3s 90ms
+            transition: transform 0.5s ease-in-out 90ms, opacity 0.3s ease-in-out 290ms, visibility 0.3s 90ms
+            transition: transform 0.5s ease-in-out 90ms, opacity 0.3s ease-in-out 290ms, visibility 0.3s 90ms, -webkit-transform 0.5s ease-in-out 90ms
+
+          &:nth-of-type(3)
+            -webkit-transition: opacity 0.3s ease-in-out 335ms, visibility 0.3s 135ms, -webkit-transform 0.5s ease-in-out 135ms
+            transition: opacity 0.3s ease-in-out 335ms, visibility 0.3s 135ms, -webkit-transform 0.5s ease-in-out 135ms
+            -o-transition: transform 0.5s ease-in-out 135ms, opacity 0.3s ease-in-out 335ms, visibility 0.3s 135ms
+            transition: transform 0.5s ease-in-out 135ms, opacity 0.3s ease-in-out 335ms, visibility 0.3s 135ms
+            transition: transform 0.5s ease-in-out 135ms, opacity 0.3s ease-in-out 335ms, visibility 0.3s 135ms, -webkit-transform 0.5s ease-in-out 135ms
+
+          &:nth-of-type(4)
+            -webkit-transition: opacity 0.3s ease-in-out 380ms, visibility 0.3s 180ms, -webkit-transform 0.5s ease-in-out 180ms
+            transition: opacity 0.3s ease-in-out 380ms, visibility 0.3s 180ms, -webkit-transform 0.5s ease-in-out 180ms
+            -o-transition: transform 0.5s ease-in-out 180ms, opacity 0.3s ease-in-out 380ms, visibility 0.3s 180ms
+            transition: transform 0.5s ease-in-out 180ms, opacity 0.3s ease-in-out 380ms, visibility 0.3s 180ms
+            transition: transform 0.5s ease-in-out 180ms, opacity 0.3s ease-in-out 380ms, visibility 0.3s 180ms, -webkit-transform 0.5s ease-in-out 180ms
+
+.nav, .nav-content
+  position: absolute
+  width: 60%
+  height: 100vh
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  opacity: 0
+  visibility: hidden
+  text-align: center
+  transition: all 1s ease-in-out 0.8s
+  z-index: 15
+
+.nav:before, .nav-content:before, .nav:after, .nav-content:after
+  content: ""
+  position: fixed
+  width: 60%
+  height: 100vh
+  left: 0
+  top: 0
+  background: rgba(33, 33, 33, 0.5)
+  z-index: -1
+  -webkit-transition: -webkit-transform cubic-bezier(0.77, 0, 0.175, 1) 1s
+  transition: -webkit-transform cubic-bezier(0.77, 0, 0.175, 1) 1s
+  -o-transition: transform cubic-bezier(0.77, 0, 0.175, 1) 1s
+  transition: transform cubic-bezier(0.77, 0, 0.175, 1) 1s
+  transition: transform cubic-bezier(0.77, 0, 0.175, 1) 1s, -webkit-transform cubic-bezier(0.77, 0, 0.175, 1) 1s
+  -webkit-transform: translateX(-100%) translateY(0%)
+  -ms-transform: translateX(-100%) translateY(0%)
+  transform: translateX(-100%) translateY(0%)
+
+@media only screen and (max-width: 767px)
+  .nav, .nav-content, .nav:before, .nav-content:before, .nav:after, .nav-content:after
+    width: 100%
+
+  .nav .nav__list-item a, .nav-content .nav__list-item a
+    width: 100% !important
+    padding-left: 0
+    padding-bottom: 10px
+    text-align: center
+
+.nav:after, .nav-content:after
+  background: #212121
+  transition-delay: 0.1s
+
+.nav:before, .nav-content:before
+  transition-delay: 0.8s
+
+.nav .inner, .nav-content .inner
+  display: table-cell
+  vertical-align: middle
+  box-sizing: border-box
+  width: 100vw
+  margin: auto
+  opacity: 0
+  transition: all 0.2s ease
+  height: 100vh
+
+.nav .inner .logo, .nav-content .inner .logo
+  position: absolute
+  top: 9px
+  left: 78px
+  pointer-events: auto
+  padding-top: 18px
+
+.nav .inner .logo img, .nav-content .inner .logo img
+  width: 80px
+  height: 50px
+
+.nav__content
+  display: flex
+  flex-flow: column
+  justify-content: center
+  align-items: center
+  height: 100%
+  text-align: left
+
+.nav__list
+  width: 100%
+  overflow: auto
+  padding-top: 50px
+
+.nav__list-item
+  position: relative
+  display: block
+  font-family: "Montserrat", sans-serif
+  font-size: 40px
+  letter-spacing: 3px
+  font-weight: bold
+  cursor: pointer
+  overflow: hidden
+  color: #fff
+
+  &.active
+    color: #fff
+
+  a
+    position: relative
+    display: block
+    padding-left: 20%
+    transition-delay: 0.8s
+    transform: translateX(-10px) scale(0.8) rotate(1deg)
+    opacity: 0
+    transform-origin: left
+    -webkit-transition: opacity 0.5s ease, -webkit-transform 0.5s ease
+    transition: opacity 0.5s ease, -webkit-transform 0.5s ease
+    -o-transition: opacity 0.5s ease, transform 0.5s ease
+    transition: opacity 0.5s ease, transform 0.5s ease
+    transition: opacity 0.5s ease, transform 0.5s ease, -webkit-transform 0.5s ease
+
+    &:hover
+      color: #fff
+      transition: color 0.5s ease-in-out 0s
+
+  ul
+    display: none
+    margin-top: 15px
+
+    li
+      font-size: 18px
+      font-weight: 600
+      margin-bottom: 10px
+
+.nav-content
+  width: 40%
+  right: 0
+  left: auto
+
+  .inner-content
+    width: 100%
+    height: 100%
+
+  &:before, &:after
+    content: ""
+    position: fixed
+    width: 40%
+    right: 0
+    left: auto
+    transform: translateX(100%) translateY(0%)
+
+  address
+    overflow: hidden
+    will-change: transform
+
+    span
+      opacity: 0
+      visibility: hidden
+      will-change: transform
+      transform: translateY(50%) rotate(15deg) scale(0.8)
+      transform-origin: top left
+      display: block
+
+    font-size: 18px
+    font-weight: 500
+    line-height: 1.7
+    overflow: inherit
+    color: #fff
+    width: 100%
+    text-align: left
+
+@media only screen and (max-width: 767px)
+  .nav-content
+    display: none
+
+body.nav-active
+  overflow: hidden !important
+
+  main.main-root
+    transform: scale(0.5, 1) translateX(30%)
+    opacity: 0
+    visibility: hidden
+    transition: all 1s ease-in-out
+
+  .header-top .header-container .menu-icon
+    .icon-circle
+      border: 2px solid #ccc
+
+    .menu-icon-close
+      display: block
+      width: 22px
+      -webkit-transition: background-color 0.5s ease, -webkit-transform 0.2s ease
+      transition: background-color 0.5s ease, -webkit-transform 0.2s ease
+      -o-transition: transform 0.2s ease, background-color 0.5s ease
+      transition: transform 0.2s ease, background-color 0.5s ease
+      transition: transform 0.2s ease, background-color 0.5s ease, -webkit-transform 0.2s ease
+
+  .nav, .nav-content
+    visibility: visible
+    opacity: 1
+    transition: all 0.2s ease-in-out 0.5s
+
+  .nav:before, .nav-content:before, .nav:after, .nav-content:after
+    transform: translateX(0%) translateY(0%)
+
+  .nav:after, .nav-content:after
+    transition-delay: 0.4s
+
+  .nav:before, .nav-content:before
+    transition-delay: 0s
+
+  .nav .inner, .nav-content .inner, .nav__content
+    opacity: 1
+    transition-delay: 0.8s
+
+  .nav__list-item
+    margin-bottom: 15px
+
+    &:nth-child(0) a
+      transition-delay: 1s
+
+    &:nth-child(1) a
+      transition-delay: 1.15s
+
+    &:nth-child(2) a
+      transition-delay: 1.3s
+
+    &:nth-child(3) a
+      transition-delay: 1.45s
+
+    &:nth-child(4) a
+      transition-delay: 1.6s
+
+    &:nth-child(5) a
+      transition-delay: 1.75s
+
+    &:nth-child(6) a
+      transition-delay: 1.9s
+
+    &:nth-child(7) a
+      transition-delay: 2.05s
+
+    &:nth-child(8) a
+      transition-delay: 2.2s
+
+    &:nth-child(9) a
+      transition-delay: 2.35s
+
+    &:nth-child(10) a
+      transition-delay: 2.5s
+
+    &:nth-child(11) a
+      transition-delay: 2.65s
+
+    &:nth-child(12) a
+      transition-delay: 2.8s
+
+    &:nth-child(13) a
+      transition-delay: 2.95s
+
+    &:nth-child(14) a
+      transition-delay: 3.1s
+
+    &:nth-child(15) a
+      transition-delay: 3.25s
+
+    &:nth-child(16) a
+      transition-delay: 3.4s
+
+    &:nth-child(17) a
+      transition-delay: 3.55s
+
+    &:nth-child(18) a
+      transition-delay: 3.7s
+
+    &:nth-child(19) a
+      transition-delay: 3.85s
+
+    &:nth-child(20) a
+      transition-delay: 4s
+
+    a
+      transform: translateX(0%)
+      opacity: 1
+      -webkit-transition: opacity 1s, -webkit-transform 1.1s
+      transition: opacity 1s, -webkit-transform 1.1s
+      -o-transition: opacity 1s, transform 1.1s
+      transition: opacity 1s, transform 1.1s
+      transition: opacity 1s, transform 1.1s, -webkit-transform 1.1s
+      -webkit-transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55)
+      -o-transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55)
+      transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55)
+      width: -webkit-max-content
+      width: -moz-max-content
+      width: max-content
+
+  .nav .dsn-wrapper, .nav-content .dsn-wrapper
+    margin-right: 7px
+
+  .nav .dsn-wrapper:last-child, .nav-content .dsn-wrapper:last-child
+    margin-right: 0
+
+  .nav address, .nav-content address
+    will-change: transform
+
+  .nav address span, .nav-content address span
+    will-change: transform
+    opacity: 1
+    visibility: visible
+    -webkit-transform: none
+    -ms-transform: none
+    transform: none
+    -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36)
+    transition: -webkit-transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36)
+    -o-transition: transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36)
+    transition: transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36)
+    transition: transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36), -webkit-transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36)
+
+  .nav address:nth-of-type(0) span, .nav-content address:nth-of-type(0) span
+    -webkit-transition: opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 1700ms, visibility 0.3s 1500ms, -webkit-transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 1500ms
+    transition: opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 1700ms, visibility 0.3s 1500ms, -webkit-transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 1500ms
+    -o-transition: transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 1500ms, opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 1700ms, visibility 0.3s 1500ms
+    transition: transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 1500ms, opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 1700ms, visibility 0.3s 1500ms
+    transition: transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 1500ms, opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 1700ms, visibility 0.3s 1500ms, -webkit-transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 1500ms
+
+  .nav address:nth-of-type(1) span, .nav-content address:nth-of-type(1) span
+    -webkit-transition: opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2000ms, visibility 0.3s 1545ms, -webkit-transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 1800ms
+    transition: opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2000ms, visibility 0.3s 1545ms, -webkit-transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 1800ms
+    -o-transition: transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 1800ms, opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2000ms, visibility 0.3s 1545ms
+    transition: transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 1800ms, opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2000ms, visibility 0.3s 1545ms
+    transition: transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 1800ms, opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2000ms, visibility 0.3s 1545ms, -webkit-transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 1800ms
+
+  .nav address:nth-of-type(2) span, .nav-content address:nth-of-type(2) span
+    -webkit-transition: opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2300ms, visibility 0.3s 1590ms, -webkit-transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2100ms
+    transition: opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2300ms, visibility 0.3s 1590ms, -webkit-transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2100ms
+    -o-transition: transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2100ms, opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2300ms, visibility 0.3s 1590ms
+    transition: transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2100ms, opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2300ms, visibility 0.3s 1590ms
+    transition: transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2100ms, opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2300ms, visibility 0.3s 1590ms, -webkit-transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2100ms
+
+  .nav address:nth-of-type(3) span, .nav-content address:nth-of-type(3) span
+    -webkit-transition: opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2600ms, visibility 0.3s 1635ms, -webkit-transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2400ms
+    transition: opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2600ms, visibility 0.3s 1635ms, -webkit-transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2400ms
+    -o-transition: transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2400ms, opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2600ms, visibility 0.3s 1635ms
+    transition: transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2400ms, opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2600ms, visibility 0.3s 1635ms
+    transition: transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2400ms, opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2600ms, visibility 0.3s 1635ms, -webkit-transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2400ms
+
+  .nav address:nth-of-type(4) span, .nav-content address:nth-of-type(4) span
+    -webkit-transition: opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2900ms, visibility 0.3s 1680ms, -webkit-transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2700ms
+    transition: opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2900ms, visibility 0.3s 1680ms, -webkit-transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2700ms
+    -o-transition: transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2700ms, opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2900ms, visibility 0.3s 1680ms
+    transition: transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2700ms, opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2900ms, visibility 0.3s 1680ms
+    transition: transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2700ms, opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2900ms, visibility 0.3s 1680ms, -webkit-transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 2700ms
+
+  .nav address:nth-of-type(5) span, .nav-content address:nth-of-type(5) span
+    -webkit-transition: opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 3200ms, visibility 0.3s 1725ms, -webkit-transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 3000ms
+    transition: opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 3200ms, visibility 0.3s 1725ms, -webkit-transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 3000ms
+    -o-transition: transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 3000ms, opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 3200ms, visibility 0.3s 1725ms
+    transition: transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 3000ms, opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 3200ms, visibility 0.3s 1725ms
+    transition: transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 3000ms, opacity 0.3s cubic-bezier(0.31, 1.37, 0.68, -0.36) 3200ms, visibility 0.3s 1725ms, -webkit-transform 0.5s cubic-bezier(0.31, 1.37, 0.68, -0.36) 3000ms
+
+@media only screen and (max-width: 767px)
+  body.nav-active main.main-root
+    transform: scale(0.8)
+    transition-delay: 0.1s

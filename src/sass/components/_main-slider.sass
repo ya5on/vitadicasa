@@ -1,0 +1,617 @@
+/* -------------------------------------------------------
+ *                   01 - Slider
+ *--------------------------------------------------------
+
+.main-slider
+  position: relative
+  width: 100%
+  height: 100vh
+  overflow: hidden
+  background-color: #fff
+
+  .root-slider
+    position: relative
+    width: 100%
+    height: 100%
+    overflow: hidden
+
+  .link-custom
+    margin-top: 30px
+
+    button
+      border: 1px solid rgba(112, 112, 112, 0.1)
+      color: #fff
+      text-decoration: none
+      white-space: nowrap
+      border-radius: 40px
+      padding-right: 25px
+      transition: background 0.2s linear
+      cursor: pointer
+
+      &:before
+        background-color: #fff
+        color: #000
+
+    i
+      display: inline-block
+      box-sizing: border-box
+      border-radius: 50%
+      font-size: 15px
+      font-weight: 600
+      height: 30px
+      width: 30px
+      line-height: 31px
+      text-align: center
+      margin: 12px 20px
+      background-color: #fff
+      color: #000
+      transition: background 0.2s linear, color 0.2s linear
+
+    span
+      white-space: normal
+      text-transform: uppercase
+      font-size: 12px
+      font-weight: 600
+      line-height: 16px
+      letter-spacing: 4px
+      transition: color 0.2s linear
+
+  .slide-inner
+    position: relative
+    height: 100%
+
+    .slide-item
+      overflow: hidden
+
+      .image-container
+        position: absolute
+        top: 0
+        right: 0
+        width: 100%
+        height: 100%
+        z-index: 1
+
+        .image-bg
+          position: absolute
+          top: 0
+          left: 0
+          width: 100%
+          height: 100%
+
+          img
+            display: none
+
+          &:after
+            content: ""
+            width: 100%
+            height: 60%
+            position: absolute
+            bottom: 0
+            left: 0
+            pointer-events: none
+            background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%)
+            background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%)
+            background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.5)))
+            background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%)
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%)
+
+  .footer-slid
+    position: absolute
+    width: 100%
+    bottom: 0
+    z-index: 103
+
+    .control-num
+      position: absolute
+      bottom: 70px
+      right: 100px
+      z-index: 3
+      line-height: 1.1
+
+      [data-dsn-header="project"].main-slider .footer-slid .control-num
+        right: 40px
+
+      span
+        font-size: 11vw
+        color: rgba(247, 99, 0, .3)
+        transform: scale3d(1, 1.15, 1.15)
+
+    .control-nav
+      position: absolute
+      bottom: 30px
+      right: 50px
+      z-index: 3
+
+      svg
+        height: 40px
+        width: 40px
+
+        .circle
+          stroke-dashoffset: 113.113px
+          stroke-dasharray: 113.113px
+          stroke-width: 0
+          opacity: 0
+          fill: #fff
+
+        .path
+          fill: none
+          stroke: #fff
+          stroke-miterlimit: 10
+          stroke-width: 1.8px
+          transition: opacity 0.3s, fill 0.3s, stroke 0.3s
+
+      .prev-container, .next-container
+        display: inline-block
+        cursor: pointer
+        transform: none
+
+      .prev-container .icon-circle, .next-container .icon-circle
+        width: 40px
+        height: 40px
+        position: absolute
+        border: 1px solid
+        border-radius: 50%
+        top: 1px
+        left: 3px
+        opacity: 0
+
+      .prev-container:hover .icon-circle
+        opacity: 1
+
+      .next-container
+        &:hover .icon-circle
+          opacity: 1
+
+        svg
+          transform: rotate(270deg)
+
+      .prev-container
+        margin-right: 15px
+
+        svg
+          transform: rotate(90deg)
+
+    .social-btn, a.cop-icon
+      width: 16px
+      height: 12px
+      cursor: pointer
+
+    .social-btn .svg-wrapper, a.cop-icon .svg-wrapper
+      width: 100%
+      display: block
+      height: auto
+      position: relative
+      padding-top: 100%
+
+    .social-btn .svg-wrapper svg, a.cop-icon .svg-wrapper svg
+      width: 100%
+      height: 100%
+      position: absolute
+      top: 0
+      left: 0
+
+    .social-btn .svg-wrapper svg path, a.cop-icon .svg-wrapper svg path
+      fill: #fff
+
+    .main-social
+      position: relative
+      bottom: 30px
+      left: 50px
+      display: inline-block
+      height: 40px
+
+      > *
+        position: relative
+        display: inline-block
+
+      .social-icon
+        height: 20px
+        transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1)
+        transition-duration: 0.6s
+
+        &:after
+          content: ""
+          position: absolute
+          width: 0
+          height: 1px
+          background-color: #fff
+          opacity: 0.2
+          top: 8px
+          left: 27px
+          transition: width 0.5s 0.3s
+
+      .social-network
+        overflow: hidden
+        will-change: transform
+
+        li
+          opacity: 0
+          visibility: hidden
+          will-change: transform
+          transform: translateY(50%) rotate(15deg) scale(0.8)
+          transform-origin: top left
+
+      &:hover
+        .dsn-wrapper
+          margin-right: 7px
+
+          &:last-child
+            margin-right: 0
+
+        .social-network
+          will-change: transform
+
+          li
+            will-change: transform
+            opacity: 1
+            visibility: visible
+            transform: none
+            -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)
+            transition: -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)
+            -o-transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)
+
+            &:nth-of-type(0)
+              -webkit-transition: opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 200ms, visibility 0.3s 0ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0ms
+              transition: opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 200ms, visibility 0.3s 0ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0ms
+              -o-transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 200ms, visibility 0.3s 0ms
+              transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 200ms, visibility 0.3s 0ms
+              transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 200ms, visibility 0.3s 0ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0ms
+
+            &:nth-of-type(1)
+              -webkit-transition: opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 260ms, visibility 0.3s 45ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 60ms
+              transition: opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 260ms, visibility 0.3s 45ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 60ms
+              -o-transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 60ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 260ms, visibility 0.3s 45ms
+              transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 60ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 260ms, visibility 0.3s 45ms
+              transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 60ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 260ms, visibility 0.3s 45ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 60ms
+
+            &:nth-of-type(2)
+              -webkit-transition: opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 320ms, visibility 0.3s 90ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 120ms
+              transition: opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 320ms, visibility 0.3s 90ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 120ms
+              -o-transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 120ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 320ms, visibility 0.3s 90ms
+              transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 120ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 320ms, visibility 0.3s 90ms
+              transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 120ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 320ms, visibility 0.3s 90ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 120ms
+
+            &:nth-of-type(3)
+              -webkit-transition: opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 380ms, visibility 0.3s 135ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 180ms
+              transition: opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 380ms, visibility 0.3s 135ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 180ms
+              -o-transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 180ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 380ms, visibility 0.3s 135ms
+              transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 180ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 380ms, visibility 0.3s 135ms
+              transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 180ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 380ms, visibility 0.3s 135ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 180ms
+
+            &:nth-of-type(4)
+              -webkit-transition: opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 440ms, visibility 0.3s 180ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 240ms
+              transition: opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 440ms, visibility 0.3s 180ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 240ms
+              -o-transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 240ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 440ms, visibility 0.3s 180ms
+              transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 240ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 440ms, visibility 0.3s 180ms
+              transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 240ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 440ms, visibility 0.3s 180ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 240ms
+
+            &:nth-of-type(5)
+              -webkit-transition: opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 500ms, visibility 0.3s 225ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 300ms
+              transition: opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 500ms, visibility 0.3s 225ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 300ms
+              -o-transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 300ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 500ms, visibility 0.3s 225ms
+              transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 300ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 500ms, visibility 0.3s 225ms
+              transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 300ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 500ms, visibility 0.3s 225ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 300ms
+
+            &:nth-of-type(6)
+              -webkit-transition: opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 560ms, visibility 0.3s 270ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 360ms
+              transition: opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 560ms, visibility 0.3s 270ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 360ms
+              -o-transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 360ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 560ms, visibility 0.3s 270ms
+              transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 360ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 560ms, visibility 0.3s 270ms
+              transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 360ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 560ms, visibility 0.3s 270ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 360ms
+
+            &:nth-of-type(7)
+              -webkit-transition: opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 620ms, visibility 0.3s 315ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 420ms
+              transition: opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 620ms, visibility 0.3s 315ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 420ms
+              -o-transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 420ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 620ms, visibility 0.3s 315ms
+              transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 420ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 620ms, visibility 0.3s 315ms
+              transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 420ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 620ms, visibility 0.3s 315ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 420ms
+
+            &:nth-of-type(8)
+              -webkit-transition: opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 680ms, visibility 0.3s 360ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 480ms
+              transition: opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 680ms, visibility 0.3s 360ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 480ms
+              -o-transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 480ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 680ms, visibility 0.3s 360ms
+              transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 480ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 680ms, visibility 0.3s 360ms
+              transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 480ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 680ms, visibility 0.3s 360ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 480ms
+
+            &:nth-of-type(9)
+              -webkit-transition: opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 740ms, visibility 0.3s 405ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 540ms
+              transition: opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 740ms, visibility 0.3s 405ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 540ms
+              -o-transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 540ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 740ms, visibility 0.3s 405ms
+              transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 540ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 740ms, visibility 0.3s 405ms
+              transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 540ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 740ms, visibility 0.3s 405ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 540ms
+
+            &:nth-of-type(10)
+              -webkit-transition: opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 800ms, visibility 0.3s 450ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 600ms
+              transition: opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 800ms, visibility 0.3s 450ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 600ms
+              -o-transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 600ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 800ms, visibility 0.3s 450ms
+              transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 600ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 800ms, visibility 0.3s 450ms
+              transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 600ms, opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 800ms, visibility 0.3s 450ms, -webkit-transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 600ms
+
+        .social-icon:after
+          width: 40px
+          transition-delay: 0s
+
+      .social-network
+        margin-left: 60px
+
+        li
+          display: inline-block
+          margin-right: 30px
+          font-size: 16px
+
+          &:last-child
+            margin-right: 0
+
+          &:hover i
+            color: #fff
+
+  &[data-dsn-header="project"] .footer-slid .control-num
+    right: 40px
+
+  .nav-slider
+    position: absolute
+    width: 8%
+    height: 30%
+    top: 35%
+    z-index: 3
+    overflow: hidden
+
+    .swiper-slide
+      cursor: pointer
+
+      .image-container
+        width: 45%
+        height: 100%
+        padding: 5px 0
+        transition: width 0.5s
+
+        &:hover
+          width: 100%
+
+        .image-bg
+          width: 100%
+          height: 100%
+          border-radius: 0 3px 3px 0
+
+          &:before
+            visibility: hidden
+
+          img
+            display: none
+
+      .content
+        position: absolute
+        right: 0
+        top: -12px
+        z-index: 1
+        opacity: 0
+
+        p
+          font-family: "Montserrat", sans-serif
+          font-size: 22px
+          opacity: 0.8
+          color: #F76300
+
+      &.swiper-slide-active
+        .image-container
+          width: 100%
+
+          .image-bg:before
+            visibility: visible
+
+        .content
+          opacity: 1
+
+@media only screen and (max-width: 767px)
+  .main-slider .footer-slid .control-num
+    right: 35px
+
+@media only screen and (max-width: 575px)
+  .main-slider .footer-slid .main-social
+    left: 20px
+
+@media only screen and (max-width: 767px)
+  .main-slider
+    .root-slider
+      width: 100%
+      height: 100%
+      left: 0
+      top: 0
+
+    .dsn-slider-content .slide-content
+      width: 100%
+
+      .slide-content-inner
+        padding-left: 50px
+        padding-right: 50px
+
+        p
+          max-width: 100%
+
+    .nav-slider
+      display: none
+
+    .dsn-slider-content .slide-content .slide-content-inner .title-text-header .title-text-header-inner
+      font-size: 55px
+
+    .footer-slid
+      .main-social, .control-nav
+        bottom: 20px
+        right: 15px
+
+@media only screen and (max-width: 575px)
+  .main-slider
+    .dsn-slider-content .slide-content .slide-content-inner
+      padding-left: 20px
+      padding-right: 20px
+
+      .title-text-header .title-text-header-inner
+        font-size: 35px
+
+      .project-metas .project-meta-box
+        margin-bottom: 20px
+
+    .link-custom
+      margin-top: 20px
+
+@media only screen and (max-width: 400px)
+  .main-slider .dsn-slider-content .slide-content .slide-content-inner
+    padding-left: 20px
+
+.dsn-slider-content .slide-content
+  position: absolute
+  display: flex
+  align-items: center
+  top: 50%
+  left: 0
+  transform: translate(0, -50%)
+  z-index: 2
+  pointer-events: none
+
+  .slide-content-inner
+    padding-left: 12.5vw
+
+    .title-text-header
+      position: relative
+      display: flex
+      align-items: flex-end
+      perspective: 1000px
+
+      .title-text-header-inner
+        font-family: "Montserrat", sans-serif
+        color: #fff
+        z-index: 0
+        font-size: 65px
+        line-height: 1.2
+        user-select: none
+
+        span
+          font-weight: 600
+          letter-spacing: -0.01em
+          line-height: 0.75em
+          white-space: nowrap
+          user-select: none
+          color: #fff
+
+    p
+      max-width: 470px
+      font-weight: 600
+      letter-spacing: 1px
+      font-size: 15px
+      line-height: 24px
+      margin-top: 10px
+      color: #fff
+
+    .project-metas .cat
+      display: block
+      position: relative
+      padding-left: 60px
+      margin-bottom: 30px
+
+      &:after
+        content: ""
+        position: absolute
+        left: 0
+        top: 50%
+        margin-top: -1px
+        width: 40px
+        height: 2px
+        background: rgba(247, 99, 0, .7)
+
+      span
+        position: relative
+        text-transform: uppercase
+        font-size: 13px
+        font-weight: 600
+        letter-spacing: 2px
+        opacity: 0.8
+        color: #fff
+
+        &:after
+          content: ""
+          display: inline-block
+          width: 15px
+          height: 2px
+          background: rgba(163, 163, 163, 0.24)
+          margin: 0 7px
+          vertical-align: middle
+
+        &:last-child:after
+          display: none
+
+    .link-custom button
+      border: 1px solid #fff
+
+  &.dsn-active
+    z-index: 3
+    pointer-events: auto
+
+  &:not(.dsn-active) .slide-content-inner
+    .title-text-header .title-text-header-inner .dsn-chars-wrapper
+      will-change: transform
+      opacity: 0 !important
+      visibility: hidden !important
+      transform: translate(90%, 0) rotate(8deg) scale(1.5) !important
+
+    .project-metas
+      margin-top: 30px
+
+      .project-client, .project-year, .project-work
+        display: inline
+        font-size: 12px
+        letter-spacing: 2px
+
+      .project-client::after, .project-year::after, .project-work::after
+        content: ""
+        display: inline-block
+        width: 15px
+        height: 2px
+        background: rgba(163, 163, 163, 0.24)
+        margin: 0 7px
+        vertical-align: middle
+
+      .project-client:last-child::after, .project-year:last-child::after, .project-work:last-child::after
+        display: none
+
+  .slide-content-inner
+    p, .link-custom
+      opacity: 0
+      transform: translateY(10%)
+      -webkit-transition-property: opacity, -webkit-transform
+      transition-property: opacity, -webkit-transform
+      -o-transition-property: opacity, transform
+      transition-property: opacity, transform
+      transition-property: opacity, transform, -webkit-transform
+      -webkit-transition-duration: 0.5s
+      -o-transition-duration: 0.5s
+      transition-duration: 0.5s
+      -webkit-transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55)
+      -o-transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55)
+      transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55)
+
+    .project-metas .project-meta-box
+      opacity: 0
+      transform: translateY(10%)
+      -webkit-transition-property: opacity, -webkit-transform
+      transition-property: opacity, -webkit-transform
+      -o-transition-property: opacity, transform
+      transition-property: opacity, transform
+      transition-property: opacity, transform, -webkit-transform
+      transition-duration: 0.5s
+      transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55)
+      transform: translateY(-10%)
+
+    p
+      transition-delay: 0.15s
+
+    .link-custom
+      transition-delay: 0.3s
+
+  &.dsn-active-cat .slide-content-inner
+    p, .link-custom, .project-metas .project-meta-box
+      opacity: 1
+      transform: translateY(0)
+
+
